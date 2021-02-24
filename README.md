@@ -34,12 +34,6 @@ $ password: admin
 
 [Nuxt.js auth module](https://auth.nuxtjs.org/)
 
-[Vue Chart](https://vue-chartjs.org/)
-
-[Chart.js](https://www.chartjs.org/)
-
-[Vuetify](https://vuetifyjs.com/en/getting-started/quick-start/)
-
 [SCSS](https://sass-lang.com/documentation)
 
 [BEM Methodology](https://en.bem.info/methodology/css/)
