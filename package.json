@@ -1,0 +1,57 @@
+{
+  "name": "pix24_nuxt",
+  "version": "1.0.0",
+  "description": "Pix24 app builded with Nuxt.js",
+  "author": "TatevG",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "test": "jest",
+    "lint:eslint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "lintfix": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
+    "lint:stylelint": "stylelint --fix"
+  },
+  "dependencies": {
+    "@nuxtjs/auth": "^4.9.1",
+    "@nuxtjs/axios": "^5.11.0",
+    "chart.js": "^2.9.3",
+    "nuxt": "^2.0.0",
+    "vue-chartjs": "^3.5.0",
+    "vue-loader": "^15.9.6",
+    "vuetify": "^2.3.1"
+  },
+  "devDependencies": {
+    "@nuxtjs/eslint-module": "^2.0.0",
+    "@nuxtjs/stylelint-module": "^4.0.0",
+    "@nuxtjs/vuetify": "^1.0.0",
+    "@vue/cli-plugin-eslint": "^4.5.11",
+    "@vue/test-utils": "^1.0.0-beta.27",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^24.1.0",
+    "babel-loader": "^8.2.2",
+    "eslint": "^7.2.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-ext": "^0.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^23.13.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-nuxt": "^1.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.1.0",
+    "eslint-plugin-vue": "^7.5.0",
+    "jest": "^24.1.0",
+    "stylelint": "^13.11.0",
+    "stylelint-config-recess-order": "^2.3.0",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-scss": "^3.19.0",
+    "vue-jest": "^4.0.0-0"
+  },
+  "gitHooks": {
+    "pre-commit": "cross-env PRE_COMMIT=true lint-staged"
+  }
+}

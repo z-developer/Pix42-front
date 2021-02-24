@@ -1,0 +1,28 @@
+# Directories
+src/common/assets
+src/common/locales
+
+# Git files
+.git
+.gitignore
+.gitattributes
+
+# Extentions
+*.json
+*.y*ml
+*.sh
+*.png
+*.ico
+
+# Local env files
+.env
+.env*
+template.env
+
+# Docker lifecycle files
+Dockerfile*
+.dockerignore
+
+# Other directories and files
+README.md
+LICENSE
