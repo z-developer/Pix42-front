@@ -2,7 +2,7 @@
     <div class="social-login-component">
         <div id="fb-root"></div>
         <a
-            class="google-signup"
+            class="google-signup mr-2"
             href="#"
             @click.prevent="loginWithGoogle"
         >
@@ -30,6 +30,7 @@
             ></path></g></svg>
             Google
         </a>
+        or
         <a
             class="facebook-signup"
             href="#"

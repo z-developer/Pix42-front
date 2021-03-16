@@ -1,11 +1,14 @@
 <template>
     <v-app
-        class="layout-default"
+        class="default-layout"
         dark
     >
         <v-main>
-            <v-container>
-                <nuxt/>
+            <v-container
+                fill-height
+                fluid
+            >
+                <nuxt keep-alive/>
             </v-container>
         </v-main>
 
@@ -22,6 +25,7 @@
 
 export default {
     name: 'default-layout',
+    // middleware: 'authenticated', TODO fix it after backend integration
 
     data() {
         return { fixed: false };

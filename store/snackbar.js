@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unused-modules*/
 export const state = () => ({
     open: false,
     text: '',

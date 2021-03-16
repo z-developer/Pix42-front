@@ -487,9 +487,7 @@ module.exports = {
         // ],
         'import/no-unresolved': [
             'warn',
-            {
-                caseSensitive: false,
-            },
+            { caseSensitive: false },
         ],
 
         'import/no-deprecated': 'warn',
