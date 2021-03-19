@@ -5,6 +5,7 @@
     >
         <v-main>
             <v-container
+                class="mb-10"
                 fill-height
                 fluid
             >

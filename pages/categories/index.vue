@@ -5,30 +5,31 @@
         <h1 class="mb-10">
             Portfolio Categories
         </h1>
+        <v-col cols="6">
+            <template v-if="categoriesList.length == 0">
+                <p class="mb-0 pb-0">
+                    All portfolio photos go into categories.
+                </p>
+                <p>
+                    Create catgories for your ortfolio and add photos.
+                </p>
+            </template>
 
-        <template v-if="categoriesList.length == 0">
-            <p class="mb-0 pb-0">
-                All portfolio photos go into categories.
-            </p>
-            <p>
-                Create catgories for your ortfolio and add photos.
-            </p>
-        </template>
-
-        <template v-else>
-            <v-flex
-                v-for="category in categoriesList"
-                :key="category"
-                class="categories-page-image-container mb-12"
-            >
-                <h3>
-                    {{ category }}
-                </h3>
-                <div class="categories-page-image-container-item mb-12">
-                    <FilePondDemo/>
-                </div>
-            </v-flex>
-        </template>
+            <template v-else>
+                <v-flex
+                    v-for="category in categoriesList"
+                    :key="category"
+                    class="categories-page-image-container mb-12"
+                >
+                    <h3>
+                        {{ category }}
+                    </h3>
+                    <div class="categories-page-image-container-item mb-12">
+                        <FilePondDemo/>
+                    </div>
+                </v-flex>
+            </template>
+        </v-col>
 
         <v-btn
             class="tt-up mt-10 px-15 py-2"

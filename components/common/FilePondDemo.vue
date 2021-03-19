@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="file-uploader">
         <file-pond
             ref="pond"
             accepted-file-types="image/jpeg, image/png"
@@ -55,3 +55,21 @@ export default {
     },
 };
 </script>
+
+<style lang="scss">
+    .file-uploader {
+        .filepond--wrapper {
+            .filepond--root {
+                .filepond--list-scroller {
+                    .filepond--list {
+                        width: 97% !important;
+                    }
+                }
+
+                a {
+                    display: none;
+                }
+            }
+        }
+    }
+</style>
