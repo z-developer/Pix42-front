@@ -13,7 +13,7 @@
                 <p class="mb-0 pb-0">
                     All portfolio photos go into categories.
                 </p>
-                <p>
+                <p class="mb-10">
                     Create catgories for your ortfolio and add photos.
                 </p>
             </template>
@@ -35,7 +35,7 @@
         </v-col>
 
         <v-btn
-            class="tt-up mt-10 px-15 py-2"
+            class="tt-up px-15 py-2"
             color="primary"
             elevation="2"
             rounded
@@ -47,6 +47,7 @@
 
         <AddCategoryPopup
             v-model="showAddCategoryPopup"
+            :existedCategories="selectedCategories"
             @addNewCategory="addNewCategory"
         >
         </addcategorypopup></v-container>
@@ -75,7 +76,6 @@ export default {
 
     methods: {
         addNewCategory(category) {
-            console.log('here', this.selectedCategories);
             this.selectedCategories.push(category);
         },
     },

@@ -6,6 +6,7 @@
         <v-dialog
             v-model="show"
             max-width="800"
+            persistent
         >
             <v-card class="text-center pa-12">
                 <v-card-title>
@@ -55,7 +56,7 @@
                         class="simple small"
                         color="cancel"
                         text
-                        @click="show = false"
+                        @click="handleCancel"
                     >
                         Cancel
                     </v-btn>
@@ -85,6 +86,11 @@ export default {
         },
 
         addNewCategory: { type: Function },
+
+        existedCategories: {
+            type: Array,
+            default: () => [],
+        },
     },
 
     data() {
@@ -192,10 +198,25 @@ export default {
         addCategory() {
             this.selectedCategories.map(category => {
                 if(category.selected) {
-                    console.log('up emit');
                     this.$emit('addNewCategory', category);
                 }
             });
+
+            if(this.customName) {
+                const category = {
+                    name: this.customName,
+                    selected: true,
+                };
+
+                this.categoriesList.push(category);
+                this.$emit('addNewCategory', category);
+            }
+            this.show = false;
+        },
+
+        handleCancel() {
+            console.log('existed', this.existedCategories);
+            console.log('just selected', this.selectedCategories);
             this.show = false;
         },
 
@@ -215,7 +236,7 @@ export default {
         }
 
         &_selected {
-            text-decoration-line: line-through;
+            color: #00ADC3;
         }
     }
 </style>
