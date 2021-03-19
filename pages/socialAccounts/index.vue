@@ -11,12 +11,12 @@
             <v-form
                 ref="socialAccountsForm"
                 v-model="valid"
-                class="d-flex flex-column social-accounts-page-form"
+                class="d-flex flex-column social-accounts-page__form"
             >
                 <v-text-field
                     ref="instagram"
                     v-model.trim="instagram"
-                    class="mt-5 social-accounts-page-form-data"
+                    class="mt-5 social-accounts-page__data"
                     dense
                     label="Instagram"
                     name="instagram"
@@ -28,7 +28,7 @@
                 <v-text-field
                     ref="facebook"
                     v-model.trim="facebook"
-                    class="mt-5 social-accounts-page-form-data"
+                    class="mt-5 social-accounts-page__data"
                     dense
                     label="Facebook"
                     name="facebook"
@@ -40,7 +40,7 @@
                 <v-text-field
                     ref="twitter"
                     v-model.trim="twitter"
-                    class="mt-5 social-accounts-page-form-data"
+                    class="mt-5 social-accounts-page__data"
                     dense
                     label="Twitter"
                     name="twitter"
@@ -52,7 +52,7 @@
                 <v-text-field
                     ref="pinterest"
                     v-model.trim="pinterest"
-                    class="mt-5 social-accounts-page-form-data"
+                    class="mt-5 social-accounts-page__data"
                     dense
                     label="Pinterest"
                     name="pinterest"
@@ -64,7 +64,7 @@
                 <v-text-field
                     ref="behance"
                     v-model.trim="behance"
-                    class="mt-5 social-accounts-page-form-data"
+                    class="mt-5 social-accounts-page__data"
                     dense
                     label="Behance"
                     name="behance"
@@ -76,7 +76,7 @@
                 <v-text-field
                     ref="px500"
                     v-model.trim="px500"
-                    class="mt-5 social-accounts-page-form-data"
+                    class="mt-5 social-accounts-page__data"
                     dense
                     label="500px"
                     name="px500"
@@ -88,7 +88,7 @@
                 <v-text-field
                     ref="shutterstock"
                     v-model.trim="shutterstock"
-                    class="mt-5 social-accounts-page-form-data"
+                    class="mt-5 social-accounts-page__data"
                     dense
                     label="Shutterstock"
                     name="shutterstock"
@@ -138,7 +138,7 @@ export default {
 
 <style lang="scss">
 .social-accounts-page {
-    &-form {
+    &__form {
         width: 100%;
 
         // &-data {

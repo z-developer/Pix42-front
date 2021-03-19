@@ -9,7 +9,7 @@
             <v-form
                 ref="personalInfoForm"
                 v-model="valid"
-                class="d-flex flex-column personal-info-page-form"
+                class="d-flex flex-column personal-info-page__form"
             >
                 <v-text-field
                     ref="userFullName"
@@ -78,7 +78,7 @@
                 <v-row class="mx-0">
                     <v-select
                         v-model="userCountry"
-                        class="mt-5 personal-info-page-country"
+                        class="mt-5 personal-info-page__country"
                         dense
                         item-text="name"
                         item-value="name"
@@ -92,7 +92,7 @@
                     <v-text-field
                         ref="userState"
                         v-model.trim="userState"
-                        class="mt-5 mx-4 personal-info-page-country"
+                        class="mt-5 mx-4 personal-info-page__country"
                         dense
                         label="State/Region"
                         :maxlength="maximumLength"
@@ -106,7 +106,7 @@
                     <v-text-field
                         ref="userCity"
                         v-model.trim="userCity"
-                        class="mt-5 personal-info-page-country"
+                        class="mt-5 personal-info-page__country"
                         dense
                         label="City or Town"
                         :maxlength="maximumLength"
@@ -175,11 +175,11 @@ export default {
 
 <style lang="scss">
 .personal-info-page {
-    &-form {
+    &__form {
         width: 100%;
     }
 
-    &-country {
+    &__country {
         width: 30%;
     }
 }

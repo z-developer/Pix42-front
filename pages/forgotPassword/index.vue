@@ -1,6 +1,6 @@
 <template>
     <v-container
-        class="login-page d-flex justify-center align-center"
+        class="forgot-password-page d-flex justify-center align-center"
     >
         forgot password page
     </v-container>
