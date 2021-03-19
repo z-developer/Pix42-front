@@ -29,7 +29,7 @@
                 v-model.trim="userTitle"
                 class="mt-5"
                 dense
-                label="Name"
+                label="Title"
                 name="userTitle"
                 outlined
                 required
@@ -41,7 +41,7 @@
                 ref="userAbout"
                 v-model.trim="userAbout"
                 class="mt-5"
-                label="Name"
+                label="About"
                 name="userAbout"
                 outlined
             ></v-textarea>

@@ -1,5 +1,9 @@
 
-<template></template>
+<template>
+    <div>
+        Logout page
+    </div>
+</template>
 
 <script>
 export default {

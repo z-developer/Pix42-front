@@ -1,23 +1,34 @@
 <template>
-    <v-row justify="center">
+    <v-row
+        class="add-category-popup"
+        justify="center"
+    >
         <v-dialog
             v-model="show"
             max-width="330"
-            persistent
         >
             <v-card class="text-center">
-                <v-card-text class="pl-10 pr-10">
+                <v-card-title>
+                    Select one of this categories
+                </v-card-title>
+                <v-card-text class="p-10">
                     <v-form
                         ref="addCategoryForm"
                         v-model="valid"
                         class="mt-8"
                     >
+                        <h2 class="text-left">
+                            or specify custom name
+                        </h2>
                         <v-text-field
+                            ref="userCity"
                             v-model.trim="customName"
-                            label="or specify custom name"
+                            class="mt-5 add-category-popup-custom-name"
+                            dense
+                            label="Category name"
                             :maxlength="maximumLength"
                             name="customName"
-                            :rules="notEmptyRule"
+                            outlined
                             type="text"
                         ></v-text-field>
                     </v-form>
@@ -37,7 +48,7 @@
                         class="simple small"
                         :disabled="!valid"
                         text
-                        @click="addCategory(name, id)"
+                        @click="addCategory(id)"
                     >
                         Save
                     </v-btn>
@@ -49,6 +60,8 @@
 
 <script>
 export default {
+    name: 'add-category-popup',
+
     props: {
         value: {
             type: Boolean,
@@ -57,7 +70,10 @@ export default {
     },
 
     data() {
-        return {};
+        return {
+            customName: '',
+            selectedCategories: [],
+        };
     },
 
     computed: {
@@ -75,15 +91,15 @@ export default {
     watch: {
         show: function(newValue, oldValue) {
             if(oldValue && !newValue) {
-                this.$refs.userForm.reset();
-                this.$refs.userForm.resetValidation();
+                this.$refs.addCategoryForm.reset();
+                this.$refs.addCategoryForm.resetValidation();
             }
         },
     },
 
     methods: {
-        addCategory(name, id) {
-            console.log('here', name, id);
+        addCategory(id) {
+            console.log('here', this.customName, id);
         },
     },
 };

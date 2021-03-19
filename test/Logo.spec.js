@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { mount } from '@vue/test-utils';
 
 import Logo from '~/components/common/Logo.vue';
