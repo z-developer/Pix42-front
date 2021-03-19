@@ -28,6 +28,7 @@ $ password: admin
 
 ```
 
+
 ## Additional Information about used technologies
 
 [Vue.js](https://vuejs.org/)
