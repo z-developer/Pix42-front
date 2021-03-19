@@ -24,7 +24,7 @@ $ npm run generate
 ```bash
 # credentials to login
 $ username: admin
-$ password: admin
+$ password: P@ssw0rd
 
 ```
 

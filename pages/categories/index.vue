@@ -5,26 +5,29 @@
         <h1 class="mb-10">
             Portfolio Categories
         </h1>
-        <v-col cols="6">
-            <template v-if="categoriesList.length == 0">
+        <v-col
+            class="d-flex flex-column justify-center align-center"
+            cols="8"
+        >
+            <template v-if="selectedCategories.length == 0">
                 <p class="mb-0 pb-0">
                     All portfolio photos go into categories.
                 </p>
-                <p>
+                <p class="mb-10">
                     Create catgories for your ortfolio and add photos.
                 </p>
             </template>
 
             <template v-else>
                 <v-flex
-                    v-for="category in categoriesList"
-                    :key="category"
-                    class="categories-page-image-container mb-12"
+                    v-for="category in selectedCategories"
+                    :key="category.name"
+                    class="categories-page__image-container mb-12"
                 >
                     <h3>
-                        {{ category }}
+                        {{ category.name }}
                     </h3>
-                    <div class="categories-page-image-container-item mb-12">
+                    <div class="categories-page__image-container-item mb-12">
                         <FilePondDemo/>
                     </div>
                 </v-flex>
@@ -32,7 +35,7 @@
         </v-col>
 
         <v-btn
-            class="tt-up mt-10 px-15 py-2"
+            class="tt-up px-15 py-2"
             color="primary"
             elevation="2"
             rounded
@@ -42,8 +45,12 @@
             + Add new category
         </v-btn>
 
-        <AddCategoryPopup v-model="showAddCategoryPopup"/>
-    </v-container>
+        <AddCategoryPopup
+            v-model="showAddCategoryPopup"
+            :existedCategories="selectedCategories"
+            @addNewCategory="addNewCategory"
+        >
+        </addcategorypopup></v-container>
 </template>
 
 <script>
@@ -63,14 +70,15 @@ export default {
         return {
             showAddCategoryPopup: false,
 
-            categoriesList: [
-                'category1',
-                'category2',
-            ],
+            selectedCategories: [],
         };
     },
 
-    methods: {},
+    methods: {
+        addNewCategory(category) {
+            this.selectedCategories.push(category);
+        },
+    },
 };
 </script>
 
@@ -81,7 +89,7 @@ export default {
             color: #777777;
         }
 
-        &-image-container {
+        &__image-container {
             width: 100%;
 
             &-item {

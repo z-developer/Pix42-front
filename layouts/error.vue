@@ -7,7 +7,7 @@
                 text-center
                 xs12
             >
-                <div class="error-layout-text">
+                <div class="error-layout__text">
                     We're sorry :(
                 </div>
                 <v-btn
