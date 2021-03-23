@@ -40,24 +40,27 @@
                                 {{ category.name }}
                             </h3>
                             <div class="categories-page__image-container-item mb-12">
-                                <FilePondDemo/>
+                                <vue-dropzone
+                                    id="drop1"
+                                    :options="dropOptions"
+                                ></vue-dropzone>
                             </div>
                         </v-flex>
                     </transition-group>
                 </Draggable>
             </template>
-        </v-col>
 
-        <v-btn
-            class="tt-up px-15 py-2"
-            color="primary"
-            elevation="2"
-            rounded
-            text
-            @click="showAddCategoryPopup = !showAddCategoryPopup"
-        >
-            + Add new category
-        </v-btn>
+            <v-btn
+                class="tt-up px-15 py-2"
+                color="primary"
+                elevation="2"
+                rounded
+                text
+                @click="showAddCategoryPopup = !showAddCategoryPopup"
+            >
+                + Add new category
+            </v-btn>
+        </v-col>
 
         <AddCategoryPopup
             v-model="showAddCategoryPopup"
@@ -81,18 +84,19 @@
 
 <script>
 /* eslint-disable import/no-unresolved */
+import vueDropzone from 'vue2-dropzone';
 import Draggable from 'vuedraggable';
 
 import AddCategoryPopup from '~/components/common/categories/AddCategoryPopup.vue';
-import FilePondDemo from '~/components/common/FilePondDemo.vue';
+import 'vue2-dropzone/dist/vue2Dropzone.min.css';
 
 export default {
     name: 'categories-page',
 
     components: {
         AddCategoryPopup,
-        FilePondDemo,
         Draggable,
+        vueDropzone,
     },
 
     data() {
@@ -101,6 +105,15 @@ export default {
 
             selectedCategories: [],
             drag: false,
+
+            dropOptions: {
+                url: 'https://httpbin.org/post',
+                thumbnailWidth: 200,
+                addRemoveLinks: true,
+                chunking: true,
+                chunkSize: 500, // Bytes
+                dictDefaultMessage: 'Drop photos here or <a>click</a> to upload',
+            },
         };
     },
 
@@ -114,6 +127,8 @@ export default {
 
 <style lang="scss">
     .categories-page {
+        height: inherit;
+
         p {
             font-size: 20px;
             color: #777777;
