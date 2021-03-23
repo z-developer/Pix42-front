@@ -58,6 +58,7 @@
                 v-show="showSuccessState"
                 class="simple small my-4"
                 color="error"
+                rounded
                 text
                 @click="clearImage"
             >

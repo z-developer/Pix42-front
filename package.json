@@ -25,6 +25,7 @@
     "vue-chartjs": "^3.5.0",
     "vue-filepond": "^6.0.3",
     "vue-loader": "^15.9.6",
+    "vuedraggable": "^2.24.3",
     "vuetify": "^2.3.1"
   },
   "devDependencies": {
