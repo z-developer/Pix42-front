@@ -19,18 +19,32 @@
             </template>
 
             <template v-else>
-                <v-flex
-                    v-for="category in selectedCategories"
-                    :key="category.name"
-                    class="categories-page__image-container mb-12"
+                <Draggable
+                    v-model="selectedCategories"
+                    animation="200"
+                    class="categories-page__image-container"
+                    draggable=".categories-page__image-container"
+                    @end="drag = false"
+                    @start="drag = true"
                 >
-                    <h3>
-                        {{ category.name }}
-                    </h3>
-                    <div class="categories-page__image-container-item mb-12">
-                        <FilePondDemo/>
-                    </div>
-                </v-flex>
+                    <transition-group
+                        name="flip-list"
+                        type="transition"
+                    >
+                        <v-flex
+                            v-for="category in selectedCategories"
+                            :key="category.name"
+                            class="categories-page__image-container mb-12"
+                        >
+                            <h3>
+                                {{ category.name }}
+                            </h3>
+                            <div class="categories-page__image-container-item mb-12">
+                                <FilePondDemo/>
+                            </div>
+                        </v-flex>
+                    </transition-group>
+                </Draggable>
             </template>
         </v-col>
 
@@ -67,6 +81,8 @@
 
 <script>
 /* eslint-disable import/no-unresolved */
+import Draggable from 'vuedraggable';
+
 import AddCategoryPopup from '~/components/common/categories/AddCategoryPopup.vue';
 import FilePondDemo from '~/components/common/FilePondDemo.vue';
 
@@ -76,6 +92,7 @@ export default {
     components: {
         AddCategoryPopup,
         FilePondDemo,
+        Draggable,
     },
 
     data() {
@@ -83,6 +100,7 @@ export default {
             showAddCategoryPopup: false,
 
             selectedCategories: [],
+            drag: false,
         };
     },
 
@@ -103,6 +121,7 @@ export default {
 
         &__image-container {
             width: 100%;
+            cursor: pointer;
 
             &-item {
                 min-height: 120px;
