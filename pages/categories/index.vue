@@ -49,8 +49,20 @@
             v-model="showAddCategoryPopup"
             :existedCategories="selectedCategories"
             @addNewCategory="addNewCategory"
+        />
+
+        <v-btn
+            class="tt-up mt-6 px-10 py-2"
+            color="primary"
+            elevation="2"
+            outlined
+            rounded
+            text
+            to="/appearance"
         >
-        </addcategorypopup></v-container>
+            Next
+        </v-btn>
+    </v-container>
 </template>
 
 <script>
