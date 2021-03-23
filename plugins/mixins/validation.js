@@ -33,32 +33,32 @@ Vue.mixin({
             dropdownRule: [ value => !!value || 'This field can not be empty' ],
 
             emailRule: [
-                value => !!value || 'email validation hint',
+                value => !!value || 'Please insert E-mail address.',
                 value => {
                     const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-                    return pattern.test(value) || 'email validation error';
+                    return pattern.test(value) || 'Incorrect E-mail address.';
                 },
             ],
 
             usernameRule: [
-                value => !!value || 'username can not be emty',
+                value => !!value || 'Username can not be empty',
                 value => {
                     const pattern = /^(?:[A-Za-z0-9]{3,50})$/;
 
                     return (
                         pattern.test(value) ||
-						'username can not be emty'
+						'Username can not be empty'
                     );
                 },
             ],
 
             nameRule: [
-                value => !!value || 'name can not be emty',
+                value => !!value || 'Please enter valid data',
                 value => {
                     const pattern = /^(?:[A-Za-z]{3,50})$/;
 
-                    return pattern.test(value) || 'name can not be emty';
+                    return pattern.test(value) || 'Please enter valid data';
                 },
             ],
 
@@ -74,29 +74,29 @@ Vue.mixin({
             notEmptyValueRule: [ value => !!value || 'This field can not be empty' ],
 
             strongPasswordRule: [
-                value => !!value || 'Password should contain 8 characters numbers and etc',
+                value => !!value || 'Please insert Password',
                 value => {
                     const pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#$!%?&])[A-Za-z\d@#$!%?&]{8,}$/;
 
-                    return pattern.test(value) || 'password is wrong';
+                    return pattern.test(value) || 'Password format is incorrect. It should contain 8 characters, at least one uppercase, number and special characters.';
                 },
             ],
 
             passwordRule: [
-                value => !!value || 'password can not be empty',
+                value => !!value || 'Please insert Password',
                 value => {
                     const pattern = /^(?=.*[a-z])(?=.*[0-9])/;
 
-                    return pattern.test(value) || 'password should be at least 8 characters';
+                    return pattern.test(value) || 'Password format is incorrect. It should contain 8 characters, at least one uppercase, number and special characters.';
                 },
             ],
 
             phoneRule: [
-                value => !!value || 'Invalid field',
+                value => !!value || 'Invalid',
                 value => {
                     const pattern = /(([+][(]?[0-9]{1,3}[)]?)|([(]?[0-9]{4}[)]?))\s*[)]?[-\s\.]?[(]?[0-9]{1,3}[)]?([-\s\.]?[0-9]{3})([-\s\.]?[0-9]{3,4})$/;
 
-                    return pattern.test(value) || 'Phone number is invalid';
+                    return pattern.test(value) || 'Invalid Phone';
                 },
             ],
         };
@@ -106,18 +106,18 @@ Vue.mixin({
         passwordSameRule() {
             if(this.password == '') return 'Invalid data';
             else if(this.password === this.oldPassword && this.password != '' && this.oldPassword != '')
-                return 'passwords are match!';
+                return 'Old and new password is the same!';
             else {
                 const pattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/;
 
-                return pattern.test(this.password) || 'password is wrong';
+                return pattern.test(this.password) || 'Password format is incorrect. It should contain 8 characters, at least one uppercase, number and special characters.';
             }
         },
 
         passwordConfirmationRule() {
             return () =>
                 (this.password === this.passwordConfirm && this.password != '' && this.passwordConfirm != '') ||
-				'passwords are not match!';
+				'Password do not match!';
         },
     },
 });

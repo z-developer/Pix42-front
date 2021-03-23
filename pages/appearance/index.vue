@@ -1,0 +1,158 @@
+<template>
+    <v-container
+        class="appearance-page d-flex justify-center align-center flex-column"
+    >
+        <h1 class="mb-12">
+            Choose theme and styles
+        </h1>
+        <v-form
+            ref="personalInfoForm"
+            v-model="valid"
+            class="d-flex flex-column personal-info-page__form"
+        >
+            <h3>
+                Add your logo and Site name
+            </h3>
+            <v-row class="my-6">
+                <ImageUploader
+                    :src="image"
+                    @fileDeleted="deleteImage"
+                    @fileUploaded="setUploadedImage"
+                />
+                <v-text-field
+                    ref="name"
+                    v-model.trim="name"
+                    class="mt-5 appearance-page__name"
+                    dense
+                    label="Site name"
+                    name="name"
+                    outlined
+                    required
+                    :rules="nameRule"
+                    type="text"
+                ></v-text-field>
+            </v-row>
+
+            <h3 class="mt-12 mb-6">
+                Select your theme
+            </h3>
+            <v-fade-transition mode="out-in">
+                <v-row>
+                    <v-col
+                        v-for="n in 3"
+                        :key="n"
+                        class="d-flex child-flex appearance-page__theme"
+                        :class="{ 'appearance-page__theme_selected': n === selectedTheme}"
+                        cols="4"
+                    >
+                        <v-card
+                            hover
+                            ripple
+                            @click="handleSelect('theme', n)"
+                        >
+                            <img
+                                class="grey darken-4"
+                                height="125"
+                                :src="`https://picsum.photos/500/300?image=${n * 5 + 10}`"
+                            />
+                            <v-card-title class="title">
+                                theme {{ n }}
+                            </v-card-title>
+                        </v-card>
+                    </v-col>
+                </v-row>
+            </v-fade-transition>
+            <h3 class="mb-6 mt-12">
+                Select your colors
+            </h3>
+            <v-row>
+                <v-col
+                    v-for="n in 3"
+                    :key="n"
+                    class="d-flex child-flex appearance-page__theme mb-12"
+                    :class="{ 'appearance-page__theme_selected': n === selectedColors}"
+                    cols="4"
+                    @click="handleSelect('color', n)"
+                >
+                    <v-card
+                        hover
+                        ripple
+                        @click="handleSelect('color', n)"
+                    >
+                        <img
+                            class="grey darken-4"
+                            height="125"
+                            :src="require(`@/assets/images/palette${n}.png`)"
+                        />
+                        <v-card-title class="title">
+                            palette {{ n }}
+                        </v-card-title>
+                    </v-card>
+                </v-col>
+            </v-row>
+        </v-form>
+        <v-btn
+            class="tt-up mt-12 px-10 py-2"
+            color="primary"
+            :disabled="!valid"
+            elevation="2"
+            outlined
+            rounded
+            text
+            to="/"
+        >
+            Publish
+        </v-btn>
+    </v-container>
+</template>
+
+<script>
+import ImageUploader from '~/components/common/ImageUploader';
+
+export default {
+    name: 'appearance-page',
+
+    components: { ImageUploader },
+
+    data() {
+        return {
+            image: '',
+            name: '',
+            selectedTheme: null,
+            selectedColors: null,
+        };
+    },
+
+    methods: {
+        setUploadedImage(result) {
+            this.image = result;
+        },
+
+        deleteImage() {
+            this.image = '';
+        },
+
+        handleSelect(type, n) {
+            if(type === 'theme') {
+                this.selectedTheme = n;
+            }
+            else {
+                this.selectedColors = n;
+            }
+        },
+    },
+};
+</script>
+
+<style lang="scss">
+    .appearance-page {
+        &__theme {
+            height: 210px;
+
+            &_selected {
+                outline: 3px solid #1976D2;
+                transition: all .1s ease;
+            }
+        }
+    }
+</style>

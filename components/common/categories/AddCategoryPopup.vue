@@ -236,7 +236,7 @@ export default {
         }
 
         &_selected {
-            color: #00ADC3;
+            color: #1976D2;
         }
     }
 </style>
