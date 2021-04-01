@@ -18,13 +18,18 @@
                 </v-toolbar>
 
                 <v-card-text>
-                    <v-form v-model="valid">
+                    <v-form
+                        ref="loginForm"
+                        v-model="valid"
+                        @keyup.native.enter="login($event)"
+                        @submit.prevent
+                    >
                         <v-text-field
                             v-model="username"
                             label="Login"
                             name="login"
                             prepend-icon="mdi-account"
-                            :rules="usernameRule"
+                            :rules="emailRule"
                             type="text"
                         />
 
@@ -50,7 +55,7 @@
                     <v-btn
                         color="primary"
                         :disabled="!valid"
-                        @click="userLogin"
+                        @click="login"
                     >
                         Login
                     </v-btn>
@@ -67,15 +72,12 @@
 <script>
 /* eslint-disable import/no-unresolved */
 
-import {
-    mapActions, mapState,
-} from 'vuex';
-
 import Snackbar from '~/components/common/Snackbar';
 import SocialLogin from '~/components/SocialLogin';
 
 export default {
     name: 'login-page',
+    auth: false,
 
     components: {
         SocialLogin,
@@ -89,8 +91,6 @@ export default {
         };
     },
 
-    computed: { ...mapState('login', [ 'loginUser' ]) },
-
     //add eventListeners to handle login when press 'Enter'
 
     created() {
@@ -102,22 +102,37 @@ export default {
     },
 
     methods: {
-        ...mapActions({ login: 'login/login' }),
+        async login() {
+            this.$refs.loginForm.validate();
 
-        userLogin() {
-            this.login({
-                username: this.username,
-                password: this.password,
-            });
+            if(this.valid) {
+                try {
+                    let response = await this.$auth.loginWith('local', {
+                        data: {
+                            email: this.username,
+                            password: this.password,
+                        },
+                    });
 
-            if(this.loginUser) {
-                this.$nuxt.$router.replace({ path: '/dashboard' });
+                    console.log('resp', response);
+
+                    if(response.status == 200 || response.status == 201) {
+                        this.$store.state.auth.loggedIn = true;
+
+                        this.$router.push('/dashboard');
+                    }
+                }
+                catch(e) {
+                    if(e.response && e.response.data.message)
+                        this.message = e.response.data.message;
+                    else this.message = 'error when try to login';
+                }
             }
         },
 
         handleKeyDown(e) {
             if(e.code === 'Enter') {
-                this.userLogin();
+                this.login();
             }
         },
     },
