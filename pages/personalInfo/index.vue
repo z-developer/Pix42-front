@@ -128,6 +128,7 @@
             rounded
             text
             to="/socialAccounts"
+            @click="updatePersonalInfo"
         >
             Let's GO >
         </v-btn>
@@ -136,6 +137,7 @@
 
 <script>
 /* eslint-disable import/no-unresolved */
+import { UpdatePersonalInfo } from '~/api/DataService';
 
 export default {
     name: 'personal-info-page',
@@ -170,6 +172,42 @@ export default {
         };
     },
 
+    methods: {
+        async updatePersonalInfo() {
+            if(this.valid) {
+                const data = {
+                    name: this.userFullName,
+                    title: this.userTitle,
+                    about: this.userAbout,
+                    email: this.userEmail,
+                    phone: this.userPhone,
+                    countryId: this.userCountry,
+                    state: this.userState,
+                    city: this.userCity,
+                };
+
+                try {
+                    const response = await UpdatePersonalInfo(data);
+
+                    if(response.status == 200 || response.status == 201) {
+                        this.sent = true;
+                        this.$router.push('/socialAccounts');
+                    }
+                    else {
+                        this.snackShow = true;
+                        this.snackText = 'something went wrong';
+                        this.snackColor = 'error';
+                    }
+                }
+                catch(e) {
+                    console.log(e);
+                    this.snackShow = true;
+                    this.snackText = 'something went wrong';
+                    this.snackColor = 'error';
+                }
+            }
+        },
+    },
 };
 </script>
 

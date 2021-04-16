@@ -17,13 +17,16 @@
                 </v-toolbar>
 
                 <v-card-text>
-                    <v-form>
+                    <v-form
+                        ref="registerForm"
+                        v-model="valid"
+                    >
                         <v-text-field
                             v-model="username"
                             label="Login"
                             name="login"
                             prepend-icon="mdi-account"
-                            :rules="usernameRule"
+                            :rules="emailRule"
                             type="text"
                         />
 
@@ -58,8 +61,8 @@
 
                     <v-btn
                         color="primary"
-                        :disabled="username === '' || password === '' || passwordConfirm === ''"
-                        @click="userRegister"
+                        :disabled="!valid"
+                        @click="register"
                     >
                         Register
                     </v-btn>
@@ -69,17 +72,17 @@
                 </v-card-text>
             </v-card>
         </v-col>
-        <Snackbar/>
-    </v-container>
+        <Snackbar
+            :color="snackColor"
+            :method="emitSnackbar"
+            :show="snackShow"
+            :text="snackText"
+        />    </v-container>
 </template>
 
 <script>
 /* eslint-disable import/no-unresolved */
-
-import {
-    mapActions, mapState,
-} from 'vuex';
-
+import { Register } from '~/api/DataService';
 import Snackbar from '~/components/common/Snackbar';
 import SocialLogin from '~/components/SocialLogin';
 
@@ -99,39 +102,55 @@ export default {
         };
     },
 
-    computed: { ...mapState('login', [ 'loginUser' ]) },
-
     //add eventListeners to handle login when press 'Enter'
 
-    created() {
-        window.addEventListener('keydown', this.handleKeyDown);
-    },
+    // created() {
+    //     window.addEventListener('keydown', this.handleKeyDown);
+    // },
 
-    destroyed() {
-        window.removeEventListener('keydown', this.handleKeyDown);
-    },
+    // destroyed() {
+    //     window.removeEventListener('keydown', this.handleKeyDown);
+    // },
 
     methods: {
-        ...mapActions({ register: 'login/register' }),
+        async register() {
+            this.$refs.registerForm.validate();
 
-        userRegister() {
-            this.register({
-                username: this.username,
-                password: this.password,
-                passwordConfirm: this.passwordConfirm,
+            if(this.valid) {
+                const data = {
+                    email: this.username,
+                    password: this.password,
+                    name: ' Tatevik',
+                    // confirmPassword: this.passwordConfirm,
+                };
 
-            });
+                try {
+                    const response = await Register(data);
 
-            if(this.loginUser) {
-                this.$nuxt.$router.replace({ path: '/dashboard' });
+                    if(response.status == 200 || response.status == 201) {
+                        this.sent = true;
+                        this.$router.push('/dashboard');
+                    }
+                    else {
+                        this.snackShow = true;
+                        this.snackText = 'something went wrong';
+                        this.snackColor = 'error';
+                    }
+                }
+                catch(e) {
+                    console.log(e);
+                    this.snackShow = true;
+                    this.snackText = 'something went wrong';
+                    this.snackColor = 'error';
+                }
             }
         },
 
-        handleKeyDown(e) {
-            if(e.code === 'Enter') {
-                this.userRegister();
-            }
-        },
+        // handleKeyDown(e) {
+        //     if(e.code === 'Enter') {
+        //         this.register();
+        //     }
+        // },
     },
 };
 </script>
