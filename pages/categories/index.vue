@@ -131,7 +131,6 @@ export default {
     methods: {
         addNewCategory(categoriesList) {
             this.selectedCategories = [ ...new Set(categoriesList.map(JSON.stringify)) ].map(JSON.parse);
-            console.log(this.selectedCategories);
         },
     },
 };
@@ -143,7 +142,7 @@ export default {
 
         p {
             font-size: 20px;
-            color: #777777;
+            color: $color-cancel;
         }
 
         &__image-container {
@@ -152,7 +151,7 @@ export default {
 
             &-item {
                 min-height: 120px;
-                border: 2px dashed #777777;
+                border: 2px dashed $color-cancel;
             }
         }
     }

@@ -82,6 +82,7 @@ export default {
     */
         '@nuxtjs/axios',
         '@nuxtjs/auth',
+        '@nuxtjs/style-resources',
     ],
 
     /*
