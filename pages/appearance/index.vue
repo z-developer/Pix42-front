@@ -19,31 +19,44 @@
                     @fileDeleted="deleteImage"
                     @fileUploaded="setUploadedImage"
                 />
-                <v-text-field
-                    ref="name"
-                    v-model.trim="name"
-                    class="mt-5 appearance-page__name"
-                    dense
-                    label="Site name"
-                    name="name"
-                    outlined
-                    required
-                    :rules="nameRule"
-                    type="text"
-                ></v-text-field>
+                <v-col class="p0">
+                    <v-text-field
+                        ref="name"
+                        v-model.trim="name"
+                        class="mt-0 appearance-page__name"
+                        dense
+                        label="Site name"
+                        name="name"
+                        outlined
+                        required
+                        :rules="notEmptyValueRule"
+                        type="text"
+                    ></v-text-field>
+                    <v-text-field
+                        ref="subDomain"
+                        v-model.trim="subDomain"
+                        class="mt-5 appearance-page__name"
+                        dense
+                        label="Subdomain"
+                        name="subDomain"
+                        outlined
+                        required
+                        :rules="subDomainRule"
+                        type="text"
+                    ></v-text-field>
+                </v-col>
             </v-row>
 
             <h3 class="mt-12 mb-6">
                 Select your theme
             </h3>
             <v-fade-transition mode="out-in">
-                <v-row>
+                <v-row class="flex-column flex-sm-row align-center">
                     <v-col
                         v-for="n in 3"
                         :key="n"
-                        class="d-flex child-flex appearance-page__theme"
+                        class="d-flex appearance-page__theme justify-center"
                         :class="{ 'appearance-page__theme_selected': n === selectedTheme}"
-                        cols="4"
                     >
                         <v-card
                             hover
@@ -56,53 +69,63 @@
                                 :src="`https://picsum.photos/500/300?image=${n * 5 + 10}`"
                             />
                             <v-card-title class="title">
-                                theme {{ n }}
+                                Theme {{ n }}
                             </v-card-title>
                         </v-card>
                     </v-col>
                 </v-row>
             </v-fade-transition>
-            <h3 class="mb-6 mt-12">
-                Select your colors
+
+            <h3 class="mt-12 mb-6">
+                Select your palette
             </h3>
-            <v-row>
-                <v-col
-                    v-for="n in 3"
-                    :key="n"
-                    class="d-flex child-flex appearance-page__theme mb-12"
-                    :class="{ 'appearance-page__theme_selected': n === selectedColors}"
-                    cols="4"
-                    @click="handleSelect('color', n)"
-                >
-                    <v-card
-                        hover
-                        ripple
-                        @click="handleSelect('color', n)"
+            <v-fade-transition mode="out-in">
+                <v-row class="flex-column flex-sm-row align-center mb-12">
+                    <v-col
+                        v-for="n in 3"
+                        :key="n"
+                        class="d-flex appearance-page__theme justify-center"
+                        :class="{ 'appearance-page__theme_selected': n === selectedColors}"
                     >
-                        <img
-                            class="grey darken-4"
-                            height="125"
-                            :src="require(`@/assets/images/palette${n}.png`)"
-                        />
-                        <v-card-title class="title">
-                            palette {{ n }}
-                        </v-card-title>
-                    </v-card>
-                </v-col>
-            </v-row>
+                        <v-card
+                            hover
+                            ripple
+                            @click="handleSelect('color', n)"
+                        >
+                            <img
+                                class="grey darken-4"
+                                height="125"
+                                :src="require(`@/assets/images/palette${n}.png`)"
+                            />
+                            <v-card-title class="title">
+                                Palette {{ n }}
+                            </v-card-title>
+                        </v-card>
+                    </v-col>
+                </v-row>
+            </v-fade-transition>
         </v-form>
-        <v-btn
-            class="tt-up mt-12 px-10 py-2"
-            color="primary"
-            :disabled="!valid"
-            elevation="2"
-            outlined
-            rounded
-            text
-            to="/"
-        >
-            Publish
-        </v-btn>
+        <v-row>
+            <v-btn
+                class="tt-up mt-10 px-10 py-2 mr-10"
+                color="primary"
+                depressed
+                elevation="2"
+                to="/categories"
+            >
+                Prevoius
+            </v-btn>
+            <v-btn
+                class="tt-up mt-10 px-10 py-2"
+                color="primary"
+                depressed
+                :disabled="!valid"
+                elevation="2"
+                to="/"
+            >
+                Publish
+            </v-btn>
+        </v-row>
     </v-container>
 </template>
 
@@ -118,6 +141,7 @@ export default {
         return {
             image: '',
             name: '',
+            subDomain: '',
             selectedTheme: null,
             selectedColors: null,
         };

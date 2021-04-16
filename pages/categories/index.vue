@@ -54,6 +54,7 @@
                 class="tt-up px-15 py-2"
                 color="primary"
                 elevation="2"
+                outlined
                 rounded
                 text
                 @click="showAddCategoryPopup = !showAddCategoryPopup"
@@ -68,17 +69,27 @@
             @addNewCategory="addNewCategory"
         />
 
-        <v-btn
-            class="tt-up mt-6 px-10 py-2"
-            color="primary"
-            elevation="2"
-            outlined
-            rounded
-            text
-            to="/appearance"
-        >
-            Next
-        </v-btn>
+        <v-row>
+            <v-btn
+                class="tt-up mt-10 px-10 py-2 mr-10"
+                color="primary"
+                depressed
+                elevation="2"
+                to="/socialAccounts"
+            >
+                Prevoius
+            </v-btn>
+            <v-btn
+                class="tt-up mt-10 px-10 py-2"
+                color="primary"
+                depressed
+                elevation="2"
+                to="/appearance"
+            >
+                Next
+            </v-btn>
+        </v-row>
+
     </v-container>
 </template>
 

@@ -99,17 +99,28 @@
             </v-form>
         </v-col>
 
-        <v-btn
-            class="tt-up mt-10 px-10 py-2"
-            color="primary"
-            :disabled="!valid"
-            elevation="2"
-            rounded
-            text
-            to="/categories"
-        >
-            Next
-        </v-btn>
+        <v-row>
+            <v-btn
+                class="tt-up mt-10 px-10 py-2 mr-10"
+                color="primary"
+                depressed
+                elevation="2"
+                to="/personalInfo"
+            >
+                Prevoius
+            </v-btn>
+            <v-btn
+                class="tt-up mt-10 px-10 py-2"
+                color="primary"
+                depressed
+                :disabled="!valid"
+                elevation="2"
+                to="/categories"
+            >
+                Next
+            </v-btn>
+        </v-row>
+
     </v-container>
 </template>
 

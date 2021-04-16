@@ -54,6 +54,7 @@
                     <v-btn
                         color="primary"
                         :disabled="!valid"
+                        md="6"
                         @click="login"
                     >
                         Login
@@ -101,7 +102,7 @@ export default {
     },
 
     methods: {
-        async login() {
+        async login(e) {
             this.$refs.loginForm.validate();
 
             if(this.valid) {
@@ -131,7 +132,7 @@ export default {
 
         handleKeyDown(e) {
             if(e.code === 'Enter') {
-                this.login();
+                this.login(e);
             }
         },
     },
