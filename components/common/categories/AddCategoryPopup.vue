@@ -196,11 +196,14 @@ export default {
 
     methods: {
         addCategory() {
+            let tempArray = [];
+
             this.selectedCategories.map(category => {
                 if(category.selected) {
-                    this.$emit('addNewCategory', category);
+                    tempArray.push(category);
                 }
             });
+            this.$emit('addNewCategory', tempArray);
 
             if(this.customName) {
                 const category = {
@@ -209,20 +212,24 @@ export default {
                 };
 
                 this.categoriesList.push(category);
-                this.$emit('addNewCategory', category);
+                this.selectedCategories.push(category);
+                this.selectedCategories.map(category => {
+                    if(category.selected) {
+                        tempArray.push(category);
+                    }
+                });
+                this.$emit('addNewCategory', tempArray);
             }
             this.show = false;
         },
 
         handleCancel() {
-            console.log('existed', this.existedCategories);
-            console.log('just selected', this.selectedCategories);
             this.show = false;
         },
 
         handleCategorySelect(category) {
             category.selected = !category.selected;
-            this.selectedCategories.push(category);
+            if(category.selected) this.selectedCategories.push(category);
         },
     },
 };
