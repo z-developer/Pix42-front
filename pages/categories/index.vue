@@ -129,8 +129,9 @@ export default {
     },
 
     methods: {
-        addNewCategory(category) {
-            this.selectedCategories.push(category);
+        addNewCategory(categoriesList) {
+            this.selectedCategories = [ ...new Set(categoriesList.map(JSON.stringify)) ].map(JSON.parse);
+            console.log(this.selectedCategories);
         },
     },
 };

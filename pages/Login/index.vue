@@ -114,8 +114,6 @@ export default {
                         },
                     });
 
-                    console.log('resp', response);
-
                     if(response.status == 200 || response.status == 201) {
                         this.$store.state.auth.loggedIn = true;
 
