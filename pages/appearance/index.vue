@@ -169,22 +169,23 @@ export default {
 </script>
 
 <style lang="scss">
-    .appearance-page {
-        &__theme {
-            height: 210px;
-
-            &_selected {
-                outline: 3px solid $color-primary;
-                transition: all .1s ease;
-            }
-        }
-    }
-
-    @media screen and (max-width: 576px) {
+.appearance-page {
+    @media screen and (max-width: $tablet-size-small) {
         .appearance-page {
             &__names {
                 width: 90vw;
             }
         }
     }
+
+    &__theme {
+        height: 210px;
+
+        &_selected {
+            outline: 3px solid $color-primary;
+            transition: all .1s ease;
+        }
+    }
+}
+
 </style>
