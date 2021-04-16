@@ -4,9 +4,8 @@
             <v-btn
                 class="tt-up mt-6 px-10 py-2"
                 color="primary"
+                depressed
                 elevation="2"
-                rounded
-                text
                 to="/login"
             >Let's GO ></v-btn>
         </div>
