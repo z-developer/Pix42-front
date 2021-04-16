@@ -99,6 +99,16 @@ Vue.mixin({
                     return pattern.test(value) || 'Invalid Phone';
                 },
             ],
+
+            subDomainRule: [
+                value => !!value || 'Subdomain must contain letters, numbers and dashes',
+                value => {
+                    const pattern = /^[0-9A-Za-z\s\-]+(?:-?[0-9A-Za-z]+)+$/;
+                    // const pattern = /^[0-9A-Za-z\s\-]+$/;
+
+                    return pattern.test(value) || 'Invalid Subdomain type';
+                },
+            ],
         };
     },
 

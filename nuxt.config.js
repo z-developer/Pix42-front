@@ -59,7 +59,10 @@ export default {
     /*
     ** Plugins to load before mounting the App
     */
-    plugins: [ { src: '~/plugins/mixins/validation.js' } ],
+    plugins: [
+        { src: '~/plugins/mixins/validation.js' },
+        { src: '~/plugins/mixins/common.js' },
+    ],
 
     /*
     ** Nuxt.js dev-modules
@@ -89,7 +92,7 @@ export default {
         customVariables: [ '~/assets/scss/variables.scss' ],
 
         theme: {
-            dark: false,
+            dark: true,
 
             themes: {
                 dark: {
@@ -105,7 +108,51 @@ export default {
         },
     },
 
-    auth: {},
+    env: { baseURL: process.env.API_URL },
+
+    axios: { baseURL: process.env.API_URL },
+
+    auth: {
+        strategies: {
+            local: {
+                token: { property: 'token' },
+
+                user: false,
+
+                endpoints: {
+                    login: {
+                        url: '/Account/login',
+                        method: 'post',
+                    },
+
+                    logout: {
+                        url: '/Account/logout',
+                        method: 'post',
+                    },
+
+                    user: {
+                        url: '/Account/me',
+                        method: 'get',
+                        propertyName: false,
+                    },
+                },
+
+                tokenRequired: true,
+                tokenName: 'Authorization',
+                tokenType: 'Bearer',
+            },
+
+            redirect: {
+                login: '/login',
+                logout: '/login',
+                home: '/',
+            },
+
+            watchLoggedIn: true,
+        },
+
+        router: { middleware: [ 'auth' ] },
+    },
 
     /*
     ** Build configuration

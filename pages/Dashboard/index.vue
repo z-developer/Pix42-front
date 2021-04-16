@@ -9,10 +9,8 @@
         <v-btn
             class="tt-up mt-6 px-10 py-2"
             color="primary"
+            depressed
             elevation="2"
-            outlined
-            rounded
-            text
             to="/personalInfo"
         >
             Let's GO >
