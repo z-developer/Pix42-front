@@ -11,7 +11,7 @@ export default {
 
     created() {
         // TODO clean localstorage and logout
-        this.$router.push('/');
+        this.$router.push('/login');
     },
 };
 </script>

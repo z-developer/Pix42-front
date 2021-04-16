@@ -10,11 +10,10 @@
         >
             <v-card class="elevation-12">
                 <v-toolbar
-                    color="primary"
                     dark
                     flat
                 >
-                    <v-toolbar-title>Login to your account</v-toolbar-title>
+                    <v-toolbar-title>Login to your Pix42 account</v-toolbar-title>
                 </v-toolbar>
 
                 <v-card-text>
@@ -24,7 +23,7 @@
                             label="Login"
                             name="login"
                             prepend-icon="mdi-account"
-                            :rules="usernameRule"
+                            :rules="emailRule"
                             type="text"
                         />
 
