@@ -52,7 +52,8 @@ export default {
     styleResources: {
         scss: [
             '~/assets/scss/colors.scss',
-            '~assets/scss/animations.scss',
+            '~/assets/scss/animations.scss',
+            '~/assets/scss/screenSizes.scss',
         ],
     },
 
@@ -82,6 +83,7 @@ export default {
     */
         '@nuxtjs/axios',
         '@nuxtjs/auth',
+        '@nuxtjs/style-resources',
     ],
 
     /*

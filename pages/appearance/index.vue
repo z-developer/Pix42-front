@@ -13,13 +13,13 @@
             <h3>
                 Add your logo and Site name
             </h3>
-            <v-row class="my-6">
+            <v-row class="my-6 flex-column flex-sm-row align-center appearance-page__names">
                 <ImageUploader
                     :src="image"
                     @fileDeleted="deleteImage"
                     @fileUploaded="setUploadedImage"
                 />
-                <v-col class="p0">
+                <v-col class="p0 mt-12 mt-sm-0">
                     <v-text-field
                         ref="name"
                         v-model.trim="name"
@@ -169,14 +169,23 @@ export default {
 </script>
 
 <style lang="scss">
-    .appearance-page {
-        &__theme {
-            height: 210px;
-
-            &_selected {
-                outline: 3px solid #1976D2;
-                transition: all .1s ease;
+.appearance-page {
+    @media screen and (max-width: $tablet-size-small) {
+        .appearance-page {
+            &__names {
+                width: 90vw;
             }
         }
     }
+
+    &__theme {
+        height: 210px;
+
+        &_selected {
+            outline: 3px solid $color-primary;
+            transition: all .1s ease;
+        }
+    }
+}
+
 </style>
