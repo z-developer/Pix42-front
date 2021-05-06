@@ -117,6 +117,8 @@ export default {
                     if(response.status == 200 || response.status == 201) {
                         this.$store.state.auth.loggedIn = true;
 
+                        const user = await this.$auth.fetchUser();
+
                         this.$router.push('/dashboard');
                     }
                 }

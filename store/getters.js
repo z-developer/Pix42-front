@@ -1,5 +1,8 @@
 export default {
-    isAuthenticated: state => state.auth.loggedIn,
-
-    loggedInUser: state => state.auth.user,
+  isAuthenticated: state => {
+    return state.auth.loggedIn;
+  },
+  loggedInUser: state => {
+    return state.auth.user;
+  }
 };
