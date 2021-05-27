@@ -1,3 +1,1 @@
-export default {
-    drawer: false,
-  }
+export default { drawer: false };
